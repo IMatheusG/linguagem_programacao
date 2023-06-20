@@ -1,0 +1,47 @@
+import PySimpleGUI as sg
+texto = ""
+layout = [
+    [sg.Input(texto, key='-DISPLAY-', size=11)],
+    [sg.B('7', key='-BTN7-'),sg.B('8', key='-BTN8-'),sg.B('9', key='-BTN9-'),sg.B('/', key='-BTNDIV-')],
+    [sg.B('4', key='-BTN4-'),sg.B('5', key='-BTN5-'),sg.B('6', key='-BTN6-'),sg.B('*', key='-BTNMULT-')],
+    [sg.B('1', key='-BTN1-'),sg.B('2', key='-BTN2-'),sg.B('3', key='-BTN3-'),sg.B('-', key='-BTNSUB-')],
+    [sg.B('.', key='-BTNPONTO-'),sg.B('0', key='-BTN0-'),sg.B('=', key='-BTNIGUAL-'),sg.B('+', key='-BTNMAIS-')],
+]
+
+janela = sg.Window(title="texto", layout=layout, font="monospace 30")
+
+while True:
+  event, values = janela.read()
+  #if event=="-BTN7-":
+   # print(values["-DISPLAY-"])
+  if event=="-BTN7-":
+    values["-DISPLAY-"] = 7
+  
+  if event=="-BTN8-":
+    texto += "8"
+    print(values["-DISPLAY-"])
+    print(event)
+    janela["-DISPLAY-"].update(texto)
+    
+  if event=="-BTN5-":
+    texto += "5"
+    print(values["-DISPLAY-"])
+    print(event)
+    janela["-DISPLAY-"].update(texto)
+    
+  if event=="-BTNMAIS-":
+    texto += "+"
+    print(values["-DISPLAY-"])
+    print(event)
+    janela["-DISPLAY-"].update(texto)
+    
+  if event=="-BTNIGUAL-":
+    print(values["-DISPLAY-"])
+    print(event)
+    a = eval(texto)
+    texto = str(a)
+    janela["-DISPLAY-"].update(texto)
+  
+  if event == sg.WIN_CLOSED:
+    break
+  
